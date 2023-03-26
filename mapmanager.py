@@ -1,5 +1,3 @@
-# напиши здесь код создания и управления картой
-
 class Mapmanager():
     def __init__(self):
         self.model = 'block'

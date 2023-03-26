@@ -1,10 +1,9 @@
-# напиши здесь код основного окна игры
 from direct.showbase.ShowBase import ShowBase
-from mapmanager import *
 from panda3d.core import WindowProperties
-from player import *
-
 from direct.task import *
+
+from player import *
+from mapmanager import *
 
 
 class Game(ShowBase):
@@ -13,6 +12,7 @@ class Game(ShowBase):
         base.camLens.setFov(90)
         self.manager = Mapmanager()
         self.load_map()
+        self.manager.addBlock((3, 3, 2))
         base.accept('m', self.save_map)
         base.accept('l', self.load_map)
 
@@ -23,7 +23,7 @@ class Game(ShowBase):
         wp.setCursorHidden(True)
         self.win.requestProperties(wp)
 
-        self.player = Hero()
+        self.player = Hero(self.manager.map)
         self.mouseTask = taskMgr.add(self.mouseTask)
 
     def save_map(self):
