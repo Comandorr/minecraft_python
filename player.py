@@ -18,30 +18,21 @@ class Hero:
         base.accept('a', self.left)
         base.accept('a-repeat', self.left)
 
-    def forward(self):
-        a = radians(self.model.getH())
+    def move(self, povorot):
+        a = radians(self.model.getH() + povorot)
         dx = sin(a) * 0.1
         dy = cos(a) * 0.1
         self.model.setX(self.model.getX() - dx)
         self.model.setY(self.model.getY() + dy)
+
+    def forward(self):
+        self.move(0)
 
     def backward(self):
-        a = radians(self.model.getH() + 180)
-        dx = sin(a) * 0.1
-        dy = cos(a) * 0.1
-        self.model.setX(self.model.getX() - dx)
-        self.model.setY(self.model.getY() + dy)
+        move(180)
 
     def right(self):
-        a = radians(self.model.getH() - 90)
-        dx = sin(a) * 0.1
-        dy = cos(a) * 0.1
-        self.model.setX(self.model.getX() - dx)
-        self.model.setY(self.model.getY() + dy)
+        move(-90)
 
     def left(self):
-        a = radians(self.model.getH() + 90)
-        dx = sin(a) * 0.1
-        dy = cos(a) * 0.1
-        self.model.setX(self.model.getX() - dx)
-        self.model.setY(self.model.getY() + dy)
+        move(90)
