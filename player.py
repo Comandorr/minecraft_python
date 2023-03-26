@@ -5,7 +5,7 @@ class Hero:
     def __init__(self):
         self.model = loader.loadModel('smiley')
         self.model.setScale(0.3)
-        self.model.setPos(5, 5, 2)
+        self.model.setPos(5, 5, 20)
         self.model.reparentTo(render)
         base.camera.reparentTo(self.model)
         base.camera.setZ(1)
@@ -17,6 +17,7 @@ class Hero:
         base.accept('d-repeat', self.right)
         base.accept('a', self.left)
         base.accept('a-repeat', self.left)
+        self.falling_speed = 0
 
     def move(self, povorot):
         a = radians(self.model.getH() + povorot)
@@ -29,10 +30,10 @@ class Hero:
         self.move(0)
 
     def backward(self):
-        move(180)
+        self.move(180)
 
     def right(self):
-        move(-90)
+        self.move(-90)
 
     def left(self):
-        move(90)
+        self.move(90)

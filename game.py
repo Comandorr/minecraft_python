@@ -49,6 +49,12 @@ class Game(ShowBase):
             self.player.model.setH(self.player.model.getH() - x*50)
             self.player.model.setP(self.player.model.getP() + y*50)
             base.win.movePointer(0, 600, 400)
+        if not self.manager.on_ground(self.player.model.getPos()):
+            self.player.falling_speed += 0.001
+            self.player.model.setZ(
+                self.player.model.getZ() - self.player.falling_speed)
+        else:
+            self.player.falling_speed = 0
         return Task.cont
 
 
