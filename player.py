@@ -9,6 +9,7 @@ class Hero:
         self.model.reparentTo(render)
         base.camera.reparentTo(self.model)
         base.camera.setZ(1)
+        base.camera.setY(0.6)
         base.accept('w', self.forward)
         base.accept('w-repeat', self.forward)
         base.accept('s', self.backward)
@@ -17,17 +18,22 @@ class Hero:
         base.accept('d-repeat', self.right)
         base.accept('a', self.left)
         base.accept('a-repeat', self.left)
+        base.accept('f', self.jump)
         self.falling_speed = 0
         self.map = map
+
+    def jump(self):
+        self.falling_speed = 0.2
+        self.model.setZ(self.model.getZ() + 0.2)
 
     def is_collide(self, position):
         x, y, z = position
         z += 0.1
         for block in self.map:
             xb, yb, zb = block.getPos()
-            if xb-0.8 <= x <= xb+0.8:
-                if yb-0.8 <= y <= yb+0.8:
-                    if zb-0.8 <= z <= zb+0.8:
+            if xb-1 <= x <= xb+1:
+                if yb-1 <= y <= yb+1:
+                    if zb-1 <= z <= zb+1:
                         return True
         return False
 
