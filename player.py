@@ -18,12 +18,12 @@ class Hero:
         base.accept('d-repeat', self.right)
         base.accept('a', self.left)
         base.accept('a-repeat', self.left)
-        base.accept('f', self.jump)
+        base.accept('space', self.jump)
         self.falling_speed = 0
         self.map = map
 
     def jump(self):
-        self.falling_speed = 0.2
+        self.falling_speed = 0.3
         self.model.setZ(self.model.getZ() + 0.2)
 
     def is_collide(self, position):
@@ -46,6 +46,8 @@ class Hero:
         point = (x, y, self.model.getZ())
         if not self.is_collide(point):
             self.model.setPos(point)
+
+
 
     def forward(self):
         self.move(0)
